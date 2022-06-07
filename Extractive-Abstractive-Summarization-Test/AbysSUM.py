@@ -13,7 +13,8 @@ from transformers import pipeline
 # In[4]:
 
 
-name = input("Enter the authors name: ")
+#name = input("Enter the authors name: ")
+name = "J.K. Rowling"
 
 with open('HP1') as f:
     text = f.read()
