@@ -83,7 +83,7 @@ results = summarizer(
 # In[ ]:
 
 
-abst_sum = results['summary_text']
+abst_sum = results[0]['summary_text']
 
 
 # In[ ]:
