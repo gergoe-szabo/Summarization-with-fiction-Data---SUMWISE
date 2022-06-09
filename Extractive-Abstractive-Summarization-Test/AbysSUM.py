@@ -13,7 +13,8 @@ from transformers import pipeline
 # In[4]:
 
 
-name = input("Enter the authors name: ")
+#name = input("Enter the authors name: ")
+name = "J.K. Rowling"
 
 with open('HP1') as f:
     text = f.read()
@@ -82,7 +83,7 @@ results = summarizer(
 # In[ ]:
 
 
-abst_sum = results['summary_text']
+abst_sum = results[0]['summary_text']
 
 
 # In[ ]:
