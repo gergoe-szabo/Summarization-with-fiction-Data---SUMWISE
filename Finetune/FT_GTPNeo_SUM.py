@@ -42,13 +42,6 @@ def preprocess_function(examples):
 tokenized_booksum = booksum.map(preprocess_function, batched=True)
 
 
-# In[ ]:
-
-
-from transformers import DataCollatorForSeq2Seq
-
-data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
-
 
 # In[ ]:
 
@@ -56,6 +49,14 @@ data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
 from transformers import AutoModelForSeq2SeqLM, Seq2SeqTrainingArguments, Seq2SeqTrainer
 
 model = AutoModelForSeq2SeqLM.from_pretrained("EleutherAI/gpt-neo-1.3B")
+
+
+# In[ ]:
+
+
+from transformers import DataCollatorForSeq2Seq
+
+data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
 
 
 # In[ ]:
