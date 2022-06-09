@@ -14,7 +14,7 @@ booksum = load_dataset("kmfoda/booksum")
 
 from transformers import AutoTokenizer
 
-tokenizer = AutoTokenizer.from_pretrained("EleutherAI/google/bigbird-pegasus-large-arxiv")
+tokenizer = AutoTokenizer.from_pretrained("google/bigbird-pegasus-large-arxiv")
 
 
 # In[ ]:
