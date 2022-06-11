@@ -14,7 +14,7 @@ booksum = load_dataset("kmfoda/booksum")
 
 from transformers import AutoTokenizer
 
-tokenizer = AutoTokenizer.from_pretrained("google/bigbird-pegasus-large-arxiv")
+tokenizer = AutoTokenizer.from_pretrained("google/pegasus-large")
 
 
 # In[ ]:
@@ -48,7 +48,7 @@ tokenized_booksum = booksum.map(preprocess_function, batched=True)
 
 from transformers import AutoModelForSeq2SeqLM, Seq2SeqTrainingArguments, Seq2SeqTrainer
 
-model = AutoModelForSeq2SeqLM.from_pretrained("google/bigbird-pegasus-large-arxiv")
+model = AutoModelForSeq2SeqLM.from_pretrained("google/pegasus-large")
 
 
 # In[ ]:
