@@ -3,33 +3,34 @@
 
 # In[ ]:
 
-from datasets import load_dataset
-
-booksum = load_dataset("kmfoda/booksum")
-
-
-# In[ ]:
-
-
+from datasets import load_dataset, Dataset
+import pandas as pd
+import json
 from transformers import AutoTokenizer
 
-tokenizer = AutoTokenizer.from_pretrained("t5-small")
-
 
 # In[ ]:
 
+
+with open('booksum_train.json', "r") as f:
+    dataset = Dataset.from_dict(json.load(f))
+
+# In[ ]:
+    
+dataset = dataset.train_test_split(test_size=0.2)
+
+
+# In[ ]:
 
 prefix = "summarize: "
 
 
-# In[ ]:
-
-
 def preprocess_function(examples):
-    inputs = [prefix + doc for doc in examples["chapter"]]
+    inputs = [prefix + doc for doc in examples["text"]]
     model_inputs = tokenizer(inputs, max_length=1024, truncation=True)
+    
     with tokenizer.as_target_tokenizer():
-        labels = tokenizer(examples["summary_text"], max_length=128, truncation=True)
+        labels = tokenizer(examples["summary"], max_length=1024, truncation=True)
     
     model_inputs["labels"] = labels["input_ids"]
     return model_inputs
@@ -38,7 +39,7 @@ def preprocess_function(examples):
 # In[ ]:
 
 
-tokenized_booksum = booksum.map(preprocess_function, batched=True)
+tokenized_dataset = dataset.map(preprocess_function, batched=True)
 
 
 
@@ -62,7 +63,7 @@ data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
 
 
 training_args = Seq2SeqTrainingArguments(
-    output_dir="./results",
+    output_dir="./results-T5-finetuned",
     evaluation_strategy="epoch",
     learning_rate=2e-5,
     per_device_train_batch_size=12,
@@ -76,16 +77,13 @@ training_args = Seq2SeqTrainingArguments(
 trainer = Seq2SeqTrainer(
     model=model,
     args=training_args,
-    train_dataset=tokenized_booksum["train"],
-    eval_dataset=tokenized_booksum["validation"],
+    train_dataset=tokenized_dataset["train"],
+    eval_dataset=tokenized_dataset["validation"],
     tokenizer=tokenizer,
     data_collator=data_collator,
 )
 
 trainer.train()
-
-
-# In[ ]:
 
 
 
