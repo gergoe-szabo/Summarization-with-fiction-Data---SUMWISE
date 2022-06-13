@@ -19,7 +19,7 @@ with open('booksum_train.json', "r") as f:
     
 dataset = dataset.train_test_split(test_size=0.2)
 
-
+tokenizer = AutoTokenizer.from_pretrained("google/t5-small")
 # In[ ]:
 
 prefix = "summarize: "
