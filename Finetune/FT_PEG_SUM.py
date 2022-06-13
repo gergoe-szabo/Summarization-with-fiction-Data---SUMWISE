@@ -8,7 +8,7 @@ import pandas as pd
 import json
 from transformers import AutoTokenizer
 
-with open('/Booksum/booksum_train.json', "r") as f:
+with open('/Dataset/booksum_train.json', "r") as f:
     dataset = Dataset.from_dict(json.load(f))
 
 len(dataset)
