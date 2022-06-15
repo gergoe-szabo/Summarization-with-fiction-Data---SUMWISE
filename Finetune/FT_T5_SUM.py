@@ -13,14 +13,14 @@ from transformers import AutoTokenizer
 # In[ ]:
 
 
-with open('/home/g-ball/Desktop/Projects/THESIS/Booksum/Dataset/booksum_train.json', "r", encoding="utf-8") as f:
+with open('/mnt/data/users/szabo/Master_Thesis/Dataset/booksum_train.json', "r", encoding="utf-8") as f:
     train_data = Dataset.from_dict(json.load(f))
 
 
 # In[ ]:
 
 
-with open('/home/g-ball/Desktop/Projects/THESIS/Booksum/Dataset/booksum_val.json', "r", encoding="utf-8") as f:
+with open('/mnt/data/users/szabo/Master_Thesis/Dataset/booksum_val.json', "r", encoding="utf-8") as f:
     val_data = Dataset.from_dict(json.load(f))
 
 
