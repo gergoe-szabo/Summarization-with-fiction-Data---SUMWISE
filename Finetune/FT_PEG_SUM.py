@@ -62,7 +62,7 @@ tokenized_val_data = val_data.map(preprocess_function, batched=True)
 from transformers import DataCollatorForSeq2Seq
 from transformers import AutoModelForSeq2SeqLM, Seq2SeqTrainingArguments, Seq2SeqTrainer
 
-model = AutoModelForSeq2SeqLM.from_pretrained("google/pegasus-xsum")
+model = AutoModelForSeq2SeqLM.from_pretrained("sshleifer/distill-pegasus-cnn-16-4")
 
 data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
 
@@ -72,15 +72,15 @@ data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
 
 training_args = Seq2SeqTrainingArguments(
 
-    output_dir="./results-FN-PEGASUS-XSUM-Booksum",
+    output_dir="./results-FN-PEGASUS",
 
     evaluation_strategy="epoch",
 
     learning_rate=2e-5,
 
-    per_device_train_batch_size=4,
+    per_device_train_batch_size=1,
 
-    per_device_eval_batch_size=4,
+    per_device_eval_batch_size=1,
 
     weight_decay=0.01,
 
