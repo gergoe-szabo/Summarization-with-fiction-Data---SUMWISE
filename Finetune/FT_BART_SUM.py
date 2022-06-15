@@ -72,7 +72,7 @@ data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
 
 training_args = Seq2SeqTrainingArguments(
 
-    output_dir="./results-FN-PEGASUS-XSUM-Booksum",
+    output_dir="./results-FN-BART",
 
     evaluation_strategy="epoch",
 
