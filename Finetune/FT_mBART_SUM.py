@@ -7,7 +7,7 @@
 from datasets import load_dataset, Dataset
 import pandas as pd
 import json
-from transformers import AutoTokenizer
+from transformers import AutoTokenizer, MBartTokenizer, MBartForConditionalGeneration
 
 
 # In[ ]:
@@ -36,7 +36,7 @@ print("entities in evaluation dataset: ", len_val)
 # In[ ]:
 
 
-tokenizer = AutoTokenizer.from_pretrained("facebook/mbart-large-cc25")
+tokenizer = MBartTokenizer.from_pretrained("facebook/mbart-large-cc25")
 
 prefix = "summarize: "
 
@@ -62,7 +62,7 @@ tokenized_val_data = val_data.map(preprocess_function, batched=True)
 from transformers import DataCollatorForSeq2Seq
 from transformers import AutoModelForSeq2SeqLM, Seq2SeqTrainingArguments, Seq2SeqTrainer
 
-model = AutoModelForSeq2SeqLM.from_pretrained("facebook/mbart-large-cc25")
+model = MBartForConditionalGeneration.from_pretrained("facebook/mbart-large-cc25")
 
 data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizer, model=model)
 
