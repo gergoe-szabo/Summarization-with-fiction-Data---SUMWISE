@@ -5,6 +5,7 @@
 
 
 from transformers import pipeline
+import json
 
 
 # In[ ]:
@@ -16,7 +17,7 @@ summarize = pipeline("summarization", model="pfad zum modell", tokenizer="pfad z
 # In[ ]:
 
 
-with open("/home/g-ball/Desktop/Projects/THESIS/Booksum/Dataset/booksum_test.json", "r", encoding="utf-8") as f:
+with open("/mnt/data/users/szabo/Master_Thesis/Dataset/booksum_test.json", "r", encoding="utf-8") as f:
     test_data = json.load(f)
 
 
@@ -62,6 +63,7 @@ def calc_rouge_scores(candidates, references):
 
 calc_rouge_scores(predictions, summaries)
 
-with open('evaluation-results.txt', 'w', encoding='utf-8') as t:
-    t.write(calc_rouge_scores(predictions, summaries))
-
+with open('/mnt/data/users/szabo/Master_Thesis/Finetune/evaluation-ZS-T5.txt', 'w', encoding='utf-8') as t:
+    scores = calc_rouge_scores(predictions, summaries)
+    
+    t.write(json.dumps(scores))
