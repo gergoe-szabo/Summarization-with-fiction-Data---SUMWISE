@@ -1,2 +1,2 @@
-# Master_Thesis
-Summarization and Evaluation Playground 
+# Summarization with fiction Data - SUMWISE
+Summarization and Evaluation Playground for the Master Thesis in DH
